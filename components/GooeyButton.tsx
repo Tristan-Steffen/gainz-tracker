@@ -1,4 +1,4 @@
-import Goo from 'gooey-react'
+import Goo from './Goo'
 import styles from "./GooeyButton.module.css"
 
 function GooeyButton() {

@@ -47,7 +47,7 @@
 
 .c1{
   transform-origin: 55px 55px;
-  transition-delay: 0.1s !important;
+  transition-delay: 0.05s !important;
   opacity:1;
 }
 
@@ -58,7 +58,7 @@
 
 .c2{
   transform-origin: 45px 85px;
-  transition-delay: 0.05s !important;
+  /* transition-delay: 0.05s !important; */
   opacity:1;
 }
 .c2:hover{
@@ -68,7 +68,7 @@
 
 .c3{
   transform-origin: 85px 45px;
-  transition-delay: 0.15s !important;
+  transition-delay: 0.1s !important;
   opacity:1;
 }
 .c3:hover{

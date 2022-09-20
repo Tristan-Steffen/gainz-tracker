@@ -1,43 +1,37 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient } from '@prisma/client'
-import type {User} from "@prisma/client"
-import { db } from '../../lib/db'
-import {hash, compare} from "bcrypt";
-import { withIronSessionApiRoute } from "iron-session/next";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { withSession } from "../../lib";
+import { db } from '../../lib/db';
 
 
-export default withIronSessionApiRoute(
+
+export default withSession(
   async function loginRoute(req: NextApiRequest,
-  res: NextApiResponse<{ok:boolean}>) {
+    res: NextApiResponse<{ ok: boolean }>) {
 
-    if(req.method === "POST"){
+    if (req.method === "POST") {
 
 
-    const {username, password} = req.body;
+      const { username, password } = req.body;
 
-    if(!username || !password){
-      return {
-        notFound:true
+      if (!username || !password) {
+        return {
+          notFound: true
+        }
       }
+
+      const user = await db.user.findFirst({ where: { username } })
+
+      if (!user) {
+        return {
+          notFound: true
+        }
+      }
+
+      // get user from database then:
+      // req.session["user"] = { id: user.id, isAdmin: user.isAdmin };
+      await req.session.save();
+      res.send({ ok: true });
+
     }
-
-    const user = db.user.findFirst({where: {username}})
-    
-
-
-    // get user from database then:
-    req.session.user = {};
-    await req.session.save();
-    res.send({ ok: true });
-
-    }
-  },
-  {
-    cookieName: "myapp_cookiename",
-    password: "complex_password_at_least_32_characters_long",
-    // secure: true should be used in production (HTTPS) but can't be used in development (HTTP)
-    cookieOptions: {
-      secure: process.env.NODE_ENV === "production",
-    },
   },
 );

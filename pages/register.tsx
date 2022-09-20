@@ -1,9 +1,6 @@
-import { useState } from "react";
-import { AuthenticationForm, Button } from "../components";
+import { AuthenticationForm } from "../components";
 
-export async function getServerSideProps(context) {
-  console.log(context);
-
+export async function getServerSideProps() {
   return {
     props: {
       test: true,
@@ -11,6 +8,6 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default () => {
+export default function Register() {
   return <AuthenticationForm actionProp="/api/user"></AuthenticationForm>;
 };

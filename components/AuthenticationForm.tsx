@@ -1,4 +1,4 @@
-export default ({ actionProp }: { actionProp: string }) => {
+export default function Form({ actionProp }: { actionProp: string; }) {
   return (
     <form action={actionProp} method="post">
       <label htmlFor="first">Username</label>
