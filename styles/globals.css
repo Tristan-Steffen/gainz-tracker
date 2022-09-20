@@ -6,6 +6,17 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+body{
+  background: #16161E;
+  overflow: hidden;
+}
+
+:root{
+  --transition: cubic-bezier(0.87, 0, 0.13, 1);
+  --transition: cubic-bezier(0.83, 0, 0.17, 1);
+  --transition: cubic-bezier(.54,-0.18,.29,1.29);
+}
+
 a {
   color: inherit;
   text-decoration: none;
