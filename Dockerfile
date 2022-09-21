@@ -20,4 +20,4 @@ RUN npm ci -P && npx prisma generate
 
 EXPOSE 3000
 
-CMD ["nest", "start"]
+CMD ["npm", "run", "start"]
