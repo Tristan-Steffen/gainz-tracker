@@ -12,7 +12,7 @@ WORKDIR /app
 COPY --from=build /app/.next/standalone .
 COPY --from=build /app/prisma ./prisma
 
-RUN npm ci && npx prisma generate
+RUN npx prisma generate
 
 EXPOSE 3000
 
