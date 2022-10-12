@@ -9,7 +9,7 @@ function Sleep() {
 
       <label htmlFor="Start">Sleep Start</label>
       <br />
-      <input type="time" id="start" name="start" />
+      <input type="datetime-local" id="start" defaultValue={new Date().toISOString().replace(/.{8}$/, "")} name="start" />
       <br />
       <br />
       <label htmlFor="amount">Amount (Hours)</label>

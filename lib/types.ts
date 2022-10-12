@@ -10,6 +10,10 @@ export type DataPointNumber<T> = CustomDataPoint<number, T>
 
 // These are all the datatypes we have
 export type DataPointWeight = DataPointNumber<"weight">;
+export type DataPointSleep = CustomDataPoint<{
+  start: Date,
+  amount: number
+}, "sleep">;
 export type DataPointHeight = DataPointNumber<"height">;
 export type DataPointFatPercent = DataPointNumber<"fat_percent">;
 export type DataPointMusclePercent = DataPointNumber<"muscle_percent">;
@@ -20,7 +24,7 @@ export type DataPointTraining = CustomDataPoint<{
 }, "training">
 
 
-export type AllDataPoints = DataPointWeight | DataPointHeight | DataPointFatPercent | DataPointMusclePercent | DataPointTraining;
+export type AllDataPoints = DataPointWeight | DataPointHeight | DataPointFatPercent | DataPointMusclePercent | DataPointTraining | DataPointSleep;
 
 export type DataPointParam = {
   [K in AllDataPoints["type"]]?:
@@ -29,5 +33,6 @@ export type DataPointParam = {
   : K extends DataPointMusclePercent["type"] ? DataPointMusclePercent["data"]
   : K extends DataPointFatPercent["type"] ? DataPointFatPercent["data"]
   : K extends DataPointHeight["type"] ? DataPointHeight["data"]
+  : K extends DataPointSleep["type"] ? DataPointSleep["data"]
   : number;
 }

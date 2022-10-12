@@ -8,20 +8,20 @@ function Weight() {
 
       <label htmlFor="weight">Weight (Kilos)</label>
       <br />
-      <input type="number" id="weight" min="0" max="1000" name="weight" />
+      <input type="number" id="weight" min="0" max="1000" step="0.1" name="weight" />
       <br />
       <br />
 
       <label htmlFor="fat">Body Fat (Percent)</label>
       <br />
-      <input type="number" id="fat" min="0" max="100" name="fat" />
+      <input type="number" id="fat" min="0" max="100" name="fat_percent" />
       <br />
       <br />
 
 
       <label htmlFor="muscle">Muscle (Percent)</label>
       <br />
-      <input type="number" id="muscle" min="0" max="100" name="muscle" />
+      <input type="number" id="muscle" min="0" max="100" name="muscle_percent" />
       <br />
       <br />
 

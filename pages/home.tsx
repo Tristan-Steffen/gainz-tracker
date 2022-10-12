@@ -2,12 +2,35 @@ import Head from "next/head";
 import Link from "next/link";
 import { GooeyButton } from "../components";
 import { Main } from "../layout";
-import { ensureSessionSsr } from "../lib/auth";
-import { UserData } from "../lib/types";
+import { withSessionSsr } from "../lib/auth";
+import { getAllForUser } from "../lib/data";
+import { AllDataPoints, UserData } from "../lib/types";
 
-export const getServerSideProps = ensureSessionSsr;
+export const getServerSideProps = withSessionSsr(async function({ req }) {
+  const user = req.session?.user || null;
 
-const Home = ({ user }: { user: UserData }) => {
+  if (!user) {
+    return {
+      props: {},
+      redirect: {
+        destination: "/login"
+      }
+    }
+  }
+
+
+  const datapoints = await getAllForUser(user.id);
+
+
+  return {
+    props: {
+      user,
+      datapoints
+    }
+  }
+})
+
+const Home = ({ user, datapoints }: { user: UserData, datapoints: AllDataPoints[] }) => {
   return (
     <Main>
       <Head>
@@ -18,6 +41,10 @@ const Home = ({ user }: { user: UserData }) => {
 
       <h1>Gainz App</h1>
       <h3>Hi {user.username}</h3>
+
+      {datapoints.map((d, i) => {
+        return <pre key={i}>{JSON.stringify(d)}</pre>
+      })}
 
       <Link href="/logout">logout</Link>
 
