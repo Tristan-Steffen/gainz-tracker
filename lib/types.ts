@@ -1,5 +1,9 @@
-import type { DataPoint, User } from "@prisma/client";
-export type UserData = Omit<User, "hash">;
+import type { DataPoint } from "@prisma/client";
+export type UserData = {
+  id: string;
+  username: string;
+  isAdmin: boolean;
+};
 
 type CustomDataPoint<T, R = "unknown"> = Omit<DataPoint, "data" | "type"> & { data: T, type: R }
 export type DataPointNumber<T> = CustomDataPoint<number, T>
