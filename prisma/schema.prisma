@@ -10,28 +10,39 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Datapoint {
+model DataPoint {
   id   Int    @id @default(autoincrement())
   type String
   data String
 
-  creator   User @relation(fields: [creatorId], references: [id])
-  creatorId Int
+  creator   User   @relation(fields: [creatorId], references: [id])
+  creatorId String
+
+  weight        User[] @relation("weightRel")
+  musclePercent User[] @relation("musclePercentRel")
+  fatPercent    User[] @relation("fatPercentRel")
+  height        User[] @relation("heightRel")
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
+  id       String @id @default(uuid())
   username String @unique
 
   isAdmin Boolean @default(false)
 
   hash String
 
-  datapoints Datapoint[]
-}
+  musclePercent   DataPoint? @relation("musclePercentRel", fields: [musclePercentId], references: [id])
+  musclePercentId Int?
 
-model Exercise {
-  id   Int     @id @default(autoincrement())
-  type String
-  icon String?
+  fatPercent   DataPoint? @relation("fatPercentRel", fields: [fatPercentId], references: [id])
+  fatPercentId Int?
+
+  weight   DataPoint? @relation("weightRel", fields: [weightId], references: [id])
+  weightId Int?
+
+  height   DataPoint? @relation("heightRel", fields: [heightId], references: [id])
+  heightId Int?
+
+  datapoints DataPoint[]
 }

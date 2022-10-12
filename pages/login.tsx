@@ -1,15 +1,34 @@
+import Link from "next/link";
 import { AuthenticationForm } from "../components";
+import { Main } from "../layout";
+import { withSessionSsr } from "../lib/auth";
 
-export async function getServerSideProps(context: any) {
-  console.log(context);
+export const getServerSideProps = withSessionSsr(async function getServerSideProps({ req }) {
+
+  if (req.session.user) {
+    return {
+      props: {},
+      redirect: {
+        destination: "/home"
+      }
+    }
+  }
 
   return {
     props: {
-      test: true,
     }, // Will be passed to the page component as props
   };
-}
+})
 
 export default function Login() {
-  return <AuthenticationForm actionProp="/api/user"></AuthenticationForm>;
+  return <Main>
+    <div style={{ display: "grid", placeItems: "center", height: "100vh" }}>
+      <div>
+        <h1 style={{ marginTop: 0 }}>Login</h1>
+        <AuthenticationForm actionProp="/api/session"></AuthenticationForm>
+        <br />
+        <Link href="/register">register</Link>
+      </div>
+    </div>
+  </Main>
 };

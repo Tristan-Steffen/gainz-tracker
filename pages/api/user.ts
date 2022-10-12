@@ -2,13 +2,12 @@ import type { User } from "@prisma/client";
 import { hash } from "bcrypt";
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '../../lib/db';
-
-
+import { UserData } from "../../lib/types";
 
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<User>
+  res: NextApiResponse<UserData | User[]>
 ) {
 
   if (req.method === "POST") {
@@ -24,6 +23,7 @@ export default async function handler(
 
     const hashedPassword = await hash(password, 10);
 
+
     const newUser = await db.user.create({
       data: {
         username,
@@ -31,6 +31,10 @@ export default async function handler(
       }
     })
 
-    res.status(200).json(newUser);
+    return res.status(200).json(newUser);
+  }
+
+  if (req.method === "GET") {
+    return res.json(await db.user.findMany())
   }
 }

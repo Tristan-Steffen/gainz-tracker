@@ -1,11 +1,19 @@
-export default function Form({ actionProp }: { actionProp: string; }) {
+import Form from "./Form";
+
+export default function AuthenticationForm({ actionProp }: { actionProp: string; }) {
   return (
-    <form action={actionProp} method="post">
+    <Form action={actionProp}>
       <label htmlFor="first">Username</label>
+      <br />
       <input type="text" id="first" name="username" />
+      <br />
+      <br />
       <label htmlFor="last">Password</label>
+      <br />
       <input type="password" id="last" name="password" />
+      <br />
+      <br />
       <button type="submit">Submit</button>
-    </form>
+    </Form>
   );
 };
