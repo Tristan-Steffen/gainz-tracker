@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Main } from "../../layout"
 
-function index() {
+function Index() {
   return (<Main>
 
     <Link href="/home">-- Back</Link><br />
@@ -14,4 +14,4 @@ function index() {
   )
 }
 
-export default index
+export default Index

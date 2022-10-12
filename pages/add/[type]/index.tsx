@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { Gym, Sleep, Weight } from "../../../components/dataform";
 import { Main } from "../../../layout";
 
-function index() {
+function Index() {
 
   const router = useRouter();
   const { type } = router.query
@@ -17,4 +17,4 @@ function index() {
   )
 }
 
-export default index
+export default Index
