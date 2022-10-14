@@ -5,6 +5,7 @@ import { getAllForUser } from "lib/data";
 import { AllDataPoints, UserData } from "lib/types";
 import Head from "next/head";
 import Link from "next/link";
+import Router from "next/router";
 
 export const getServerSideProps = withSessionSsr(async function({ req }) {
   const user = req.session?.user || null;
@@ -47,10 +48,10 @@ const Home = ({ user, datapoints }: { user: UserData, datapoints: AllDataPoints[
       <Link href="/auth/logout">logout</Link>
 
       <div style={{ position: "absolute", right: "10px", bottom: "30px" }}>
-        <GooeyButton startAngle={-90} endAngle={90}>
-          <span>1</span>
-          <span>2</span>
-          <span>3</span>
+        <GooeyButton startAngle={-90} endAngle={90} onClick={() => Router.push("/add")}>
+          <button onClick={() => Router.push("/add/sleep")}>sleep</button>
+          <button onClick={() => Router.push("/add/weight")}>weight</button>
+          <button onClick={() => Router.push("/add/gym")}>gym</button>
         </GooeyButton>
       </div>
     </Main>
