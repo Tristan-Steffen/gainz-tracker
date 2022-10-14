@@ -9,10 +9,12 @@ function Index() {
 
   return (<Main>
     <span style={{ cursor: "pointer" }} onClick={() => router.back()}>&lt;- back</span>
-    <h1 style={{}}>Create Datapoint</h1>
-    {type === "gym" && <Gym />}
-    {type === "sleep" && <Sleep />}
-    {type === "weight" && <Weight />}
+    <div style={{ width: "min-content" }}>
+      <h1 style={{}}>Create Datapoint</h1>
+      {type === "gym" && <Gym />}
+      {type === "sleep" && <Sleep />}
+      {type === "weight" && <Weight />}
+    </div>
   </Main>
   )
 }

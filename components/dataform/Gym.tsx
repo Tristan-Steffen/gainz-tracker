@@ -8,7 +8,7 @@ function Gym() {
 
       <label htmlFor="type">Type </label>
       <br />
-      <select id="type" name="type" >
+      <select style={{ width: "100%" }} id="type" name="type" >
         <option value="butterfly">Butterfly</option>
         <option value="bench_press">Bench Press</option>
         <option value="deadlifts">Dead Lifts</option>
@@ -18,14 +18,14 @@ function Gym() {
 
       <label htmlFor="reps">Repeats</label>
       <br />
-      <input type="number" id="reps" name="reps" defaultValue="10" min="1" max="500" />
+      <input style={{ width: "100%" }} type="number" id="reps" name="reps" defaultValue="10" min="1" max="500" />
       <br />
       <br />
 
 
       <label htmlFor="weight">Weight (Kilos)</label>
       <br />
-      <input type="number" id="weight" min="0" max="500" defaultValue="50" step="0.5" name="weight" />
+      <input style={{ width: "100%" }} type="number" id="weight" min="0" max="500" defaultValue="50" step="0.5" name="weight" />
       <br />
       <br />
 
