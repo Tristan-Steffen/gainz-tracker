@@ -1,8 +1,8 @@
 import { compare } from 'bcrypt';
+import { withSession } from "lib/auth";
+import { db } from 'lib/db';
+import { UserData } from 'lib/types';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { withSession } from "../../lib/auth";
-import { db } from '../../lib/db';
-import { UserData } from '../../lib/types';
 
 export default withSession(
   async function loginRoute(req: NextApiRequest,
@@ -34,10 +34,9 @@ export default withSession(
       }
 
       const userData = { id: user.id, isAdmin: user.isAdmin, username: user.username };
-
-      // get user from database then:
       req.session["user"] = userData;
       await req.session.save();
+
       return res.redirect("/home");
 
     }

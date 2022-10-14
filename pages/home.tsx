@@ -1,10 +1,10 @@
+import { GooeyButton } from "components";
+import { Main } from "layout";
+import { withSessionSsr } from "lib/auth";
+import { getAllForUser } from "lib/data";
+import { AllDataPoints, UserData } from "lib/types";
 import Head from "next/head";
 import Link from "next/link";
-import { GooeyButton } from "../components";
-import { Main } from "../layout";
-import { withSessionSsr } from "../lib/auth";
-import { getAllForUser } from "../lib/data";
-import { AllDataPoints, UserData } from "../lib/types";
 
 export const getServerSideProps = withSessionSsr(async function({ req }) {
   const user = req.session?.user || null;
@@ -13,14 +13,12 @@ export const getServerSideProps = withSessionSsr(async function({ req }) {
     return {
       props: {},
       redirect: {
-        destination: "/login"
+        destination: "/auth/login"
       }
     }
   }
 
-
   const datapoints = await getAllForUser(user.id);
-
 
   return {
     props: {
@@ -46,10 +44,14 @@ const Home = ({ user, datapoints }: { user: UserData, datapoints: AllDataPoints[
         return <pre key={i}>{JSON.stringify(d)}</pre>
       })}
 
-      <Link href="/logout">logout</Link>
+      <Link href="/auth/logout">logout</Link>
 
       <div style={{ position: "absolute", right: "10px", bottom: "30px" }}>
-        <GooeyButton />
+        <GooeyButton startAngle={-90} endAngle={90}>
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+        </GooeyButton>
       </div>
     </Main>
   );

@@ -1,4 +1,4 @@
-import { withSessionSsr } from "../lib/auth";
+import { withSessionSsr } from "lib/auth";
 
 export const getServerSideProps = withSessionSsr(async function getServerSideProps({ req }) {
   req.session.destroy()

@@ -1,7 +1,7 @@
+import { Main } from "layout";
+import { withSessionSsr } from "lib/auth";
+import { UserData } from "lib/types";
 import Link from "next/link";
-import { Main } from "../layout";
-import { withSessionSsr } from "../lib/auth";
-import { UserData } from "../lib/types";
 
 export const getServerSideProps = withSessionSsr(async function getServerSideProps({ req }) {
   const user = req.session?.user || null;
@@ -18,11 +18,11 @@ function Index({ user }: { user: UserData }) {
     {user ? <>
       <Link href="/home">Home</Link>
       <br />
-      <Link href="/logout">logout</Link>
+      <Link href="/auth/logout">logout</Link>
     </> : <>
-      <Link href="/login">login</Link>
+      <Link href="/auth/login">login</Link>
       <br />
-      <Link href="/register">register</Link>
+      <Link href="/auth/register">register</Link>
     </>
     }
   </Main>

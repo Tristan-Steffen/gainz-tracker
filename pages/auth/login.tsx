@@ -1,7 +1,7 @@
+import { AuthenticationForm } from "components";
+import { Main } from "layout";
+import { withSessionSsr } from "lib/auth";
 import Link from "next/link";
-import { AuthenticationForm } from "../components";
-import { Main } from "../layout";
-import { withSessionSsr } from "../lib/auth";
 
 export const getServerSideProps = withSessionSsr(async function getServerSideProps({ req }) {
 
@@ -27,7 +27,7 @@ export default function Login() {
         <h1 style={{ marginTop: 0 }}>Login</h1>
         <AuthenticationForm actionProp="/api/session"></AuthenticationForm>
         <br />
-        <Link href="/register">register</Link>
+        <Link href="/auth/register">register</Link>
       </div>
     </div>
   </Main>
