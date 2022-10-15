@@ -41,7 +41,7 @@ export default function AuthenticationForm({ actionProp }: { actionProp: string;
 
     const res = CreateUserSchema.parse({ username, password });
 
-    const response = await api.registerUser(res);
+    const response = await api.send(actionProp, { body: res });
 
     if (response.ok) {
       setState("success")

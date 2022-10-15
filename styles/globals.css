@@ -23,10 +23,14 @@ body{
   overflow: hidden;
 }
 
+#nprogress .bar {
+   background: white;
+  pointer-events: none;
+}
+
 :root{
-  --transition: cubic-bezier(0.87, 0, 0.13, 1);
-  --transition: cubic-bezier(0.83, 0, 0.17, 1);
   --transition: cubic-bezier(.54,-0.18,.29,1.29);
+  --primary-dark: #16161E;
 }
 
 a {
@@ -44,6 +48,6 @@ a {
   }
   body {
     color: white;
-    background: black;
+    background: var(--primary-dark);
   }
 }

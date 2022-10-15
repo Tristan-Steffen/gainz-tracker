@@ -9,23 +9,37 @@
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.wrapper  circle{
+.wrapper > span:last-child{
+  --size: 0.5px;
+  --color: white;
+  filter: drop-shadow(0px 0px var(--size) var(--color)) drop-shadow(0px 0px var(--size) var(--color)) drop-shadow(0px 0px var(--size) var(--color)) drop-shadow(0px 0px var(--size) var(--color)) drop-shadow(0px 0px var(--size) var(--color)) drop-shadow(0px 0px var(--size) var(--color)) drop-shadow(0px 0px var(--size) var(--color));
+} 
+
+.wrapper   > span>div>svg circle{
   fill: #ffffffc9;
   stroke: black;
   cursor:pointer;
-  transition: cy 0.5s var(--transition), cx 0.5s var(--transition), r 0.6s var(--transition), transform 0.3s ease, opacity 0.3s ease, fill 0.8s ease;
+  stroke-width: 4px;
+  transition: cy 0.5s var(--transition), cx 0.5s var(--transition), r 0.6s var(--transition), transform 0.3s ease, opacity 0.3s ease, fill 0.3s ease;
 }
 
 .wrapper circle:hover{
   fill: #e1e1e1ee;
-  r: 40px;
+  r: 35px;
 }
 
+.circle-small{
+  pointer-events:none;
+}
+
+.hovered,
 .circle-small:hover {
-  r: 24px !important;
+  r: 27px !important;
+  fill:black;
 }
 
 .wrapper:hover .circle-small{
+  pointer-events:all;
   cx: var(--hx, 50px);
   cy: var(--hy, 50px);
   r: 30px
@@ -33,10 +47,11 @@
 
 .main-button {
   position: absolute;
+  pointer-events:none;
   right: 0px;
   background-color: rgba(0, 0, 255, 0);
   border: none;
-  color: white;
+  color: var(--primary-dark);
   bottom: 0px;
   margin: 0px;
   padding: 0px;
@@ -44,7 +59,6 @@
   width: 100%;
   border-radius: 100%;
   z-index: 1;
-  color: gray;
   font-size: 200%;
   cursor:pointer;
 }
@@ -57,12 +71,13 @@
   transform:translate(-50%, -50%);
   opacity:0;
   pointer-events:none;
-  transition:top 0.5s var(--transition),left 0.5s var(--transition),opacity 0.3s ease;
+  transition:top 0.5s var(--transition),left 0.5s var(--transition),opacity 0.3s ease,transform 0.3s var(--transition);
 }
+
 
 .wrapper:hover .circle-content{
   opacity:1;
-  pointer-events:all;
+  transform:translate(-50%, -50%);
   left: var(--hx);
   top: var(--hy);
 }

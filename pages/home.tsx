@@ -6,6 +6,8 @@ import { AllDataPoints, UserData } from "lib/types";
 import Head from "next/head";
 import Link from "next/link";
 import Router from "next/router";
+import styles from "styles/Home.module.css";
+import { Barbell, Bed, Fish } from "tabler-icons-react";
 
 export const getServerSideProps = withSessionSsr(async function({ req }) {
   const user = req.session?.user || null;
@@ -49,9 +51,9 @@ const Home = ({ user, datapoints }: { user: UserData, datapoints: AllDataPoints[
 
       <div style={{ position: "absolute", right: "10px", bottom: "30px" }}>
         <GooeyButton startAngle={-90} endAngle={90} onClick={() => Router.push("/add")}>
-          <button onClick={() => Router.push("/add/sleep")}>sleep</button>
-          <button onClick={() => Router.push("/add/weight")}>weight</button>
-          <button onClick={() => Router.push("/add/gym")}>gym</button>
+          <button className={styles.button} onClick={() => Router.push("/add/sleep")}><Bed /></button>
+          <button className={styles.button} onClick={() => Router.push("/add/weight")}><Barbell /></button>
+          <button className={styles.button} onClick={() => Router.push("/add/gym")}><Fish /></button>
         </GooeyButton>
       </div>
     </Main>
