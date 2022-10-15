@@ -22,25 +22,26 @@ function calculatePos({ startAngle, endAngle, index, amount }: { startAngle: num
 
 }
 
+const angleTolerance = 30;
+const { innerWidth = 100, innerHeight = 200 } = globalThis;
+const lengthTolerance = innerWidth > innerHeight ? 50 : innerWidth / 2;
+
+
 function GooeyButton(props: GooProps) {
 
   const children = useMemo(() => Children.toArray(props.children) as ReactElement[], [props.children]);
 
-
   const childProps = useMemo(() => children.map((_, i) => {
     const { x, y, radians, degrees } = calculatePos({ amount: children.length, index: i, startAngle: props.startAngle ?? 0, endAngle: props.endAngle ?? 360 })
-    const style = { "--hx": (50 - x) + "px", "--hy": (50 - y) + "px" } as React.CSSProperties;
+    const style = { "--hx": (-x) + "px", "--hy": (-y) + "px" } as React.CSSProperties;
     return { style, x, y, radians, degrees, index: i };
   }), [children, props.endAngle, props.startAngle])
-
 
   const [downVec, setDownVec] = useState({ x: -1, y: -1, vx: 0, vy: 0 });
 
   const [dragHoveredIndex, setDragHoveredIndex] = useState(-1);
 
   function handleDragStart(ev: TouchEvent) {
-
-
     setDownVec({ ...downVec, x: ev.touches[0].clientX, y: ev.touches[0].clientY })
   }
 
@@ -56,13 +57,10 @@ function GooeyButton(props: GooProps) {
 
     const angle = Math.atan2(downVec.vy, downVec.vx) * 180 / Math.PI - 90;
 
-    const angleTolerance = 30;
-    const tolerance = 50;
     const length = Math.sqrt(Math.pow(downVec.vx, 2) + Math.pow(downVec.vy, 2));
     let index = -1;
 
-
-    if (length < 100 + tolerance && length > 100 - tolerance) {
+    if (length < 100 + lengthTolerance && length > 100 - lengthTolerance) {
       for (const c of childProps) {
         const isHovered = c.degrees - angleTolerance < angle && c.degrees + angleTolerance > angle;
         if (isHovered) {
@@ -98,7 +96,11 @@ function GooeyButton(props: GooProps) {
           <svg width="100%" height="100%" viewBox="0 0 100 100">
             <circle r="40" cx="50" cy="50" onClick={handleMainClick} onTouchEnd={handleTouchEnd} onTouchMove={handleDrag} ></circle>
             {children.map((child, i) => {
-              return <circle key={i} onClick={child.props.onClick} className={`${styles["circle-small"]} ${dragHoveredIndex === i ? styles["hovered"] : ""}`} style={childProps[i].style} r="40" cx="50" cy="50" />
+              return <circle
+                key={i}
+                onClick={child.props.onClick}
+                className={`${styles["circle-small"]} ${dragHoveredIndex === i ? styles["hovered"] : ""}`}
+                style={childProps[i].style} r="40" cx="50" cy="50" />
             })}
           </svg>
         </Goo>
