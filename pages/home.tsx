@@ -2,6 +2,7 @@ import { GooeyButton } from "components";
 import { Main } from "layout";
 import { withSessionSsr } from "lib/auth";
 import { getAllForUser } from "lib/data";
+import { safefiyDatapoint } from "lib/helpers";
 import { AllDataPoints, UserData } from "lib/types";
 import Head from "next/head";
 import Link from "next/link";
@@ -21,7 +22,9 @@ export const getServerSideProps = withSessionSsr(async function({ req }) {
     }
   }
 
-  const datapoints = await getAllForUser(user.id);
+  const datapoints = (await getAllForUser(user.id)).map(d => safefiyDatapoint(d));
+
+  console.log({ datapoints })
 
   return {
     props: {
@@ -41,13 +44,32 @@ const Home = ({ user, datapoints }: { user: UserData, datapoints: AllDataPoints[
       </Head>
 
       <h1>Gainz App</h1>
-      <h3>Hi {user.username}</h3>
 
-      {datapoints.map((d, i) => {
-        return <pre key={i}>{JSON.stringify(d)}</pre>
-      })}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <h3>Hi {user.username}</h3><Link href="/auth/logout">logout</Link>
+      </div>
 
-      <Link href="/auth/logout">logout</Link>
+      <hr />
+
+      {datapoints.length && <>
+        <h3>DataPoints:</h3>
+        <table style={{ border: "solid thin white", padding: "10px" }}>
+          {datapoints.map((d, i) => {
+
+            const date = new Date(d.createdAt)
+
+            return <tr key={i} style={{ borderBottom: "solid thin white" }}>
+              <td><b>{d.id}</b></td>
+              <td>{date.getDate()}-{date.getMonth().toString().padStart(2, "0")}-{date.getFullYear()} - {date.getHours()}:{date.getMinutes()}</td>
+              <td><i>{d.type}</i></td>
+              <td>{JSON.stringify(d.data)}</td>
+            </tr>
+          })}
+        </table>
+
+      </>
+      }
+
 
       <div style={{ position: "fixed", right: "10px", bottom: "30px" }}>
         <GooeyButton startAngle={-100} endAngle={70} onClick={() => Router.push("/add")}>

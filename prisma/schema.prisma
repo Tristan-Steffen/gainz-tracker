@@ -11,7 +11,11 @@ datasource db {
 }
 
 model DataPoint {
-  id   Int    @id @default(autoincrement())
+  id Int @id @default(autoincrement())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
   type String
   data String
 
@@ -27,6 +31,9 @@ model DataPoint {
 model User {
   id       String @id @default(uuid())
   username String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 
   isAdmin Boolean @default(false)
 

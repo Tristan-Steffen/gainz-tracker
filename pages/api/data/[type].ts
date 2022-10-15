@@ -25,8 +25,6 @@ export default withSession(
 
     const { type } = req.query;
 
-    console.log({ type, body: req.body })
-
     if (type === "sleep") {
 
       const { start, amount } = req.body;
@@ -65,12 +63,9 @@ export default withSession(
         muscle_percent: parseFloat(muscle_percent)
       })
 
-      console.log({ datapoints })
-
       return res.redirect("/home")
 
     }
-
 
     return res.json({});
 
