@@ -49,7 +49,7 @@ const Home = ({ user, datapoints }: { user: UserData, datapoints: AllDataPoints[
 
       <Link href="/auth/logout">logout</Link>
 
-      <div style={{ position: "absolute", right: "10px", bottom: "30px" }}>
+      <div style={{ position: "fixed", right: "10px", bottom: "30px" }}>
         <GooeyButton startAngle={-90} endAngle={90} onClick={() => Router.push("/add")}>
           <button className={styles.button} onClick={() => Router.push("/add/sleep")}><Bed /></button>
           <button className={styles.button} onClick={() => Router.push("/add/weight")}><Barbell /></button>
