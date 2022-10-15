@@ -34,11 +34,13 @@
 
 .hovered,
 .circle-small:hover {
+  display: block!important;
   r: 27px !important;
-  fill:black;
+  fill:#3a3a3a !important;
 }
 
-.wrapper:hover .circle-small{
+.wrapper:hover .circle-small,
+.wrapper[data-hovered=true] .circle-small{
   pointer-events:all;
   cx: var(--hx, 50px);
   cy: var(--hy, 50px);
@@ -75,8 +77,10 @@
 }
 
 
-.wrapper:hover .circle-content{
+.wrapper:hover .circle-content,
+.wrapper[data-hovered=true] .circle-content {
   opacity:1;
+  color: white;
   transform:translate(-50%, -50%);
   left: var(--hx);
   top: var(--hy);
