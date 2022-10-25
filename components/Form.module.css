@@ -1,0 +1,17 @@
+.wrapper {
+  border-radius: 5px;
+  border: var(--outline);
+  box-shadow: var(--that-style);
+  background: var(--primary-gradient);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 1em;
+}
+
+.title{
+  margin: 0px;
+  position: absolute;
+  font-family:"Apfel Grotezk";
+  font-weight:700;
+  top: 0.43em;
+}

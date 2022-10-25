@@ -2,7 +2,7 @@ import formWrapper from "./FormErrors.module.css";
 
 function FormError(props: { errors?: string[] }) {
 
-  if (!props.errors?.length) return <br />;
+  if (!props.errors?.length) return <></>;
 
   return <div className={formWrapper["form-error-wrapper"]}>
     {props.errors.map(e => {

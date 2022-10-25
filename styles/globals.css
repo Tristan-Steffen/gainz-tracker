@@ -1,8 +1,60 @@
 @font-face {
   font-family: "ApfelGrotezk";
-  src: url("/fonts/ApfelGrotezk-Fett.woff2") format("woff2"),
-       url("/fonts/ApfelGrotezk-Fett.woff") format("woff");
+  src: url("../public/fonts/ApfelGrotezk-Fett.woff2") format("woff2"),
+       url("../public/fonts/ApfelGrotezk-Fett.woff") format("woff");
 }
+
+/* poppins-100 - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 100;
+  src: local(''),
+       url('../public/fonts/poppins-v20-latin-100.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../public/fonts/poppins-v20-latin-100.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* poppins-200 - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 200;
+  src: local(''),
+       url('../public/fonts/poppins-v20-latin-200.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../public/fonts/poppins-v20-latin-200.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* poppins-regular - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+       url('../public/fonts/poppins-v20-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../public/fonts/poppins-v20-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* poppins-900 - latin */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 900;
+  src: local(''),
+       url('../public/fonts/poppins-v20-latin-900.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../public/fonts/poppins-v20-latin-900.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+
+:root{
+  --background: linear-gradient(0deg, #4B4E5A, #4B4E5A);
+  --outline: 1px solid #4B4E5A;
+  --primary-gradient: linear-gradient(135.06deg, #16161E 3.85%, #252530 96.92%);
+  --transition: cubic-bezier(.54,-0.18,.29,1.29);
+  --that-style: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), inset -4px -8px 45px -9px rgba(255, 255, 255, 0.05);
+  --primary-dark: #16161E;
+  --dark: hsla(240, 12%, 13%, 1);
+}
+
 
 html,
 body {
@@ -29,8 +81,6 @@ body{
 }
 
 :root{
-  --transition: cubic-bezier(.54,-0.18,.29,1.29);
-  --primary-dark: #16161E;
 }
 
 a {

@@ -5,6 +5,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { typeToFlattenedError } from "zod";
 import Form from "./Form";
 import FormErrors from "./FormErrors";
+import InputText from "./InputText";
 
 export default function AuthenticationForm({ actionProp }: { actionProp: string; }) {
 
@@ -82,14 +83,10 @@ export default function AuthenticationForm({ actionProp }: { actionProp: string;
 
   return (
     <Form action={actionProp} onSubmit={handleSubmit}>
-      <label htmlFor="first">Username</label>
-      <br />
-      <input style={{ width: "100%" }} type="text" id="first" name="username" onChange={ev => setUsername(ev.target.value)} />
+      <InputText type="username" name="username" onChange={setUsername} />
       <FormErrors errors={fieldErrors?.username} />
       <br />
-      <label htmlFor="last">Password</label>
-      <br />
-      <input style={{ width: "100%" }} type="password" id="last" onChange={(ev) => setPassword(ev.target.value)} name="password" />
+      <InputText type="password" name="password" onChange={setPassword} />
       <FormErrors errors={fieldErrors?.password} />
       <br />
       {state === "idle" &&
